@@ -7,7 +7,7 @@
 : ${KERB_MASTER_KEY:=masterkey}
 : ${KERB_ADMIN_USER:=admin}
 : ${KERB_ADMIN_PASS:=admin}
-: ${CREATE_PRINCIPAL:=1}
+: ${BOOTSTRAP:=1}
 
 fix_nameserver() {
   cat>/etc/resolv.conf<<EOF
@@ -76,14 +76,18 @@ main() {
   fix_hostname
   create_config
 
-  if [ "$CREATE_PRINCIPAL" -eq 0 ]; then
+  if [ "$BOOTSTRAP" -eq 0 ]; then
     create_db
-    start_kdc
     create_admin_user
-    restart_kdc
+    start_kdc
   fi
 
-  while true; do sleep 1000; done
+  if [ ! -f /var/kerberos/krb5kdc/principal ]; then
+    while true; do sleep 1000; done
+  else
+    start_kdc
+    tail -f /var/log/krb5kdc.log
+  fi
 }
 
 [[ "$0" == "$BASH_SOURCE" ]] && main "$@"
