@@ -2,8 +2,8 @@
 
 [[ "TRACE" ]] && set -x
 
-: ${REALM:=NODE.CONSUL}
-: ${DOMAIN_REALM:=node.consul}
+: ${REALM:=NODE.DC1.CONSUL}
+: ${DOMAIN_REALM:=node.dc1.consul}
 : ${KERB_MASTER_KEY:=masterkey}
 : ${KERB_ADMIN_USER:=admin}
 : ${KERB_ADMIN_PASS:=admin}
@@ -12,7 +12,7 @@
 fix_nameserver() {
   cat>/etc/resolv.conf<<EOF
 nameserver $NAMESERVER_IP
-search service.consul node.consul
+search service.consul node.dc1.consul
 EOF
 }
 
