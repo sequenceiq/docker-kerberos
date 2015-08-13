@@ -7,7 +7,6 @@
 : ${KERB_MASTER_KEY:=masterkey}
 : ${KERB_ADMIN_USER:=admin}
 : ${KERB_ADMIN_PASS:=admin}
-: ${BOOTSTRAP:=1}
 
 fix_nameserver() {
   cat>/etc/resolv.conf<<EOF
@@ -76,10 +75,12 @@ main() {
   fix_hostname
   create_config
 
-  if [ "$BOOTSTRAP" -eq 0 ]; then
+  if [ ! -f /kerberos_initialized ]; then
     create_db
     create_admin_user
     start_kdc
+
+    touch /kerberos_initialized
   fi
 
   if [ ! -f /var/kerberos/krb5kdc/principal ]; then
