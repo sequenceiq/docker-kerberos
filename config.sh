@@ -87,7 +87,7 @@ main() {
     while true; do sleep 1000; done
   else
     start_kdc
-    tail -f /var/log/krb5kdc.log
+    tail -f /var/log/kerberos/krb5kdc.log
   fi
 }
 
