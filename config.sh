@@ -24,9 +24,9 @@ create_config() {
 
   cat>/etc/krb5.conf<<EOF
 [logging]
- default = FILE:/var/log/krb5libs.log
- kdc = FILE:/var/log/krb5kdc.log
- admin_server = FILE:/var/log/kadmind.log
+ default = FILE:/var/log/kerberos/krb5libs.log
+ kdc = FILE:/var/log/kerberos/krb5kdc.log
+ admin_server = FILE:/var/log/kerberos/kadmind.log
 
 [libdefaults]
  default_realm = $REALM
