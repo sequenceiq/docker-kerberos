@@ -20,7 +20,7 @@ Once the container is running you can enable kerberos with `Ambari`.
 ### Test
 Once kerberos is enabled you need a `ticket` to execute any job on the cluster. Here's an example to get a ticket:
 ```
-kinit -V -kt /etc/security/keytabs/yarn.service.keytab yarn/karalabe-0-1426768348448.node.dc1.consul@NODE.DC1.CONSUL
+kinit -V -kt /etc/security/keytabs/smokeuser.headless.keytab ambari-qa-sparktest-rec@NODE.DC1.CONSUL
 ```
 Example job:
 ```java
