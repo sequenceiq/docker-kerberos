@@ -17,6 +17,16 @@ The containers have a pretty bad entropy level so the KDC won't start because of
 The `/etc/krb5.conf` is shared with the host so the generated configuration will be present on the host as well. We need to share this configuration with the `ambari-server` container as well or you need to take care of the copying.
 Once the container is running you can enable kerberos with `Ambari`.
 
+Useful environment variables:
+
+| --------------------- | ----------------------------- |
+| `REALM`               | the Kerberos realm            |
+| `DOMAIN_REALM`        | the DNS domain for the realm  |
+| `KERB_MASTER_KEY`     | master key for the KDC        |
+| `KERB_ADMIN_USER`     | administrator account name    |
+| `KERB_ADMIN_PASS`     | administrator's password      |
+| `SEARCH_DOMAINS`      | domain suffix search list     |
+
 ### Test
 Once kerberos is enabled you need a `ticket` to execute any job on the cluster. Here's an example to get a ticket:
 ```

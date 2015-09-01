@@ -7,11 +7,12 @@
 : ${KERB_MASTER_KEY:=masterkey}
 : ${KERB_ADMIN_USER:=admin}
 : ${KERB_ADMIN_PASS:=admin}
+: ${SEARCH_DOMAINS:=search.consul node.dc1.consul}
 
 fix_nameserver() {
   cat>/etc/resolv.conf<<EOF
 nameserver $NAMESERVER_IP
-search service.consul node.dc1.consul
+search $SEARCH_DOMAINS
 EOF
 }
 
