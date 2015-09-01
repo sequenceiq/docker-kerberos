@@ -54,6 +54,8 @@ create_db() {
 }
 
 start_kdc() {
+  mkdir -p /var/log/kerberos
+
   /etc/rc.d/init.d/krb5kdc start
   /etc/rc.d/init.d/kadmin start
 
@@ -88,7 +90,7 @@ main() {
     while true; do sleep 1000; done
   else
     start_kdc
-    tail -f /var/log/kerberos/krb5kdc.log
+    tail -F /var/log/kerberos/krb5kdc.log
   fi
 }
 
