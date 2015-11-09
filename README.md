@@ -19,6 +19,7 @@ Once the container is running you can enable kerberos with `Ambari`.
 
 Useful environment variables:
 
+| Environmenr variables | Description |
 | --------------------- | ----------------------------- |
 | `REALM`               | the Kerberos realm            |
 | `DOMAIN_REALM`        | the DNS domain for the realm  |
