@@ -36,7 +36,10 @@ kinit -V -kt /etc/security/keytabs/smokeuser.headless.keytab ambari-qa-sparktest
 Example job:
 ```java
 export HADOOP_LIBS=/usr/hdp/current/hadoop-mapreduce-client
+export JAR_EXAMPLES=$HADOOP_LIBS/hadoop-mapreduce-examples.jar
 export JAR_JOBCLIENT=$HADOOP_LIBS/hadoop-mapreduce-client-jobclient.jar
+
+hadoop jar $JAR_EXAMPLES teragen 10000000 /user/ambari-qa/terasort-input
 
 hadoop jar $JAR_JOBCLIENT mrbench -baseDir /user/ambari-qa/smallJobsBenchmark -numRuns 5 -maps 10 -reduces 5 -inputLines 10 -inputType ascending
 ```
