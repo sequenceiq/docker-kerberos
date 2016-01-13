@@ -76,9 +76,9 @@ create_admin_user() {
 main() {
   fix_nameserver
   fix_hostname
-  create_config
 
   if [ ! -f /kerberos_initialized ]; then
+    create_config
     create_db
     create_admin_user
     start_kdc
