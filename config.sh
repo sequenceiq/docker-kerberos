@@ -34,7 +34,6 @@ create_config() {
  dns_lookup_realm = false
  dns_lookup_kdc = false
  ticket_lifetime = 24h
- renew_lifetime = 7d
  forwardable = true
 
 [realms]
@@ -56,16 +55,8 @@ create_db() {
 start_kdc() {
   mkdir -p /var/log/kerberos
 
-  /etc/rc.d/init.d/krb5kdc start
-  /etc/rc.d/init.d/kadmin start
-
-  chkconfig krb5kdc on
-  chkconfig kadmin on
-}
-
-restart_kdc() {
-  /etc/rc.d/init.d/krb5kdc restart
-  /etc/rc.d/init.d/kadmin restart
+  /usr/sbin/krb5kdc -P /var/run/krb5kdc.pid
+  /usr/sbin/_kadmind -P /var/run/kadmind.pid
 }
 
 create_admin_user() {
